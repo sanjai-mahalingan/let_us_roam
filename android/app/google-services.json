@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "558846954442",
+    "project_id": "let-us-roam",
+    "storage_bucket": "let-us-roam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558846954442:android:9b1b2f7db338627d469d33",
+        "android_client_info": {
+          "package_name": "com.example.let_us_roam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBp3fqpbWgEVBdi1eEKmJJbqD3T-OcHZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
