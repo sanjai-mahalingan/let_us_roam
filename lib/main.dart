@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:let_us_roam/pages/initialView.dart';
+import 'package:let_us_roam/pages/index_view.dart';
+import 'package:let_us_roam/pages/initial_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -16,9 +17,26 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+
+        // Define the default brightness and colors
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.purple, brightness: Brightness.dark),
+
+        // Default Text Theme
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          titleMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          displayMedium: TextStyle(
+            fontSize: 16,
+          ),
+        ),
+      ),
       initialRoute: "initialView",
       routes: {
         "initialView": (context) => const InitialView(),
+        "indexView": (context) => const IndexView()
       },
     );
   }
