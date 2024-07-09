@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:let_us_roam/pages/auth/registration_view.dart';
 import 'package:let_us_roam/pages/index_view.dart';
 import 'package:let_us_roam/pages/initial_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:let_us_roam/pages/auth/login_view.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -22,7 +24,7 @@ class MainApp extends ConsumerWidget {
 
         // Define the default brightness and colors
         colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.purple, brightness: Brightness.dark),
+            seedColor: Colors.purple, brightness: Brightness.light),
 
         // Default Text Theme
         textTheme: const TextTheme(
@@ -36,7 +38,9 @@ class MainApp extends ConsumerWidget {
       initialRoute: "initialView",
       routes: {
         "initialView": (context) => const InitialView(),
-        "indexView": (context) => const IndexView()
+        "indexView": (context) => const IndexView(),
+        "registrationView": (context) => const RegistrationView(),
+        "loginView": (context) => const LoginView(),
       },
     );
   }

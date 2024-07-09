@@ -19,7 +19,7 @@ class _InitialView extends ConsumerState<InitialView> {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
         ref.read(userSession.notifier).state = null;
-        Navigator.pushNamed(context, 'indexView');
+        Navigator.pushNamed(context, 'loginView');
       } else {
         ref.read(userSession.notifier).state = user;
         Navigator.pushNamed(context, 'indexView');
@@ -29,7 +29,7 @@ class _InitialView extends ConsumerState<InitialView> {
 
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch(userSession);
+    // final user = ref.watch(userSession);
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
