@@ -29,11 +29,11 @@ class _RegistrationView extends ConsumerState<RegistrationView> {
           isLoading = false;
         });
         if (mounted) {
-          Navigator.pushNamed(context, 'loginView');
+          Navigator.pushNamed(context, 'indexView');
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
-              content: const Text('Thank for your registration. Kindly login'),
+              content: const Text('Thank for your registration.'),
               backgroundColor: Colors.green,
               margin: EdgeInsets.only(
                   bottom: MediaQuery.of(context).size.height - 100,
