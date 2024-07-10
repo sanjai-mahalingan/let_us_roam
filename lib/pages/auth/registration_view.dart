@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationView extends ConsumerStatefulWidget {
   const RegistrationView({super.key});
@@ -18,12 +17,68 @@ class _RegistrationView extends ConsumerState<RegistrationView> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
-  onRegistration() {
-    setState(() {
-      isLoading = true;
-    });
-
-    if (_formKey.currentState!.validate()) {}
+  onRegistration() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        isLoading = true;
+      });
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: email.text, password: password.text);
+        setState(() {
+          isLoading = false;
+        });
+        if (mounted) {
+          Navigator.pushNamed(context, 'loginView');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              behavior: SnackBarBehavior.floating,
+              content: const Text('Thank for your registration. Kindly login'),
+              backgroundColor: Colors.green,
+              margin: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height - 100,
+                  right: 20,
+                  left: 20),
+            ),
+          );
+        }
+      } on FirebaseAuthException catch (e) {
+        if (mounted && e.code == 'invalid-email') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              behavior: SnackBarBehavior.floating,
+              content: const Text('The email address is badly formatted.'),
+              backgroundColor: Colors.red,
+              margin: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height - 100,
+                  right: 20,
+                  left: 20),
+            ),
+          );
+          setState(() {
+            isLoading = false;
+          });
+          return;
+        }
+        if (mounted && e.code == 'email-already-in-use') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              behavior: SnackBarBehavior.floating,
+              content: const Text('Email already registered'),
+              backgroundColor: Colors.red,
+              margin: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height - 100,
+                  right: 20,
+                  left: 20),
+            ),
+          );
+          setState(() {
+            isLoading = false;
+          });
+          return;
+        }
+      }
+    }
 
     setState(() {
       isLoading = false;
