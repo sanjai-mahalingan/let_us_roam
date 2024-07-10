@@ -59,24 +59,24 @@ class _LoginView extends ConsumerState<LoginView> {
               const SizedBox(
                 height: 80,
               ),
-              const Padding(
-                padding: EdgeInsets.all(20),
+              Padding(
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Login",
-                      style: TextStyle(
+                      isForgotPassword ? "Reset" : "Login",
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 40,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
-                      'Welcome Back',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      isForgotPassword ? "Your Password" : 'Welcome Back',
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ],
                 ),
@@ -171,17 +171,22 @@ class _LoginView extends ConsumerState<LoginView> {
                                         return null;
                                       },
                                     ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        onLogin();
-                                      },
-                                      child: const Text("Login"),
-                                    ),
                                   ],
                                 ),
+                              ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        isForgotPassword
+                            ? ElevatedButton(
+                                onPressed: () {},
+                                child: const Text('Send Reset Link'),
+                              )
+                            : ElevatedButton(
+                                onPressed: () {
+                                  onLogin();
+                                },
+                                child: const Text("Login"),
                               ),
                         const SizedBox(
                           height: 20,
