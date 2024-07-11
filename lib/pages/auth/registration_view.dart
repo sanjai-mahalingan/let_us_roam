@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:let_us_roam/pages/initial_view.dart';
+import 'package:let_us_roam/widgets/loader.dart';
 
 class RegistrationView extends ConsumerStatefulWidget {
   const RegistrationView({super.key});
@@ -209,12 +210,14 @@ class _RegistrationView extends ConsumerState<RegistrationView> {
                           const SizedBox(
                             height: 20,
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              onRegistration();
-                            },
-                            child: const Text('Start Roaming'),
-                          ),
+                          isLoading
+                              ? const Loader(size: 20)
+                              : ElevatedButton(
+                                  onPressed: () {
+                                    onRegistration();
+                                  },
+                                  child: const Text('Start Roaming'),
+                                ),
                           const SizedBox(
                             height: 20,
                           ),
