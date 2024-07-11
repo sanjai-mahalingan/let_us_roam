@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:let_us_roam/pages/initial_view.dart';
 
 class RegistrationView extends ConsumerStatefulWidget {
   const RegistrationView({super.key});
@@ -25,6 +26,14 @@ class _RegistrationView extends ConsumerState<RegistrationView> {
       try {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: email.text, password: password.text);
+        FirebaseAuth.instance.authStateChanges().listen((User? user) {
+          if (user != null) {
+            ref.read(userSession.notifier).state = user;
+          } else {
+            ref.read(userSession.notifier).state = null;
+            Navigator.pushNamed(context, 'initialView');
+          }
+        });
         setState(() {
           isLoading = false;
         });
