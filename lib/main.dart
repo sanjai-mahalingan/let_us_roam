@@ -5,6 +5,9 @@ import 'package:let_us_roam/pages/initial_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:let_us_roam/pages/auth/login_view.dart';
+import 'package:let_us_roam/pages/profile/favorite_view.dart';
+import 'package:let_us_roam/pages/profile/profile_view.dart';
+import 'package:let_us_roam/pages/trips/create_trip_view.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -41,6 +44,9 @@ class MainApp extends ConsumerWidget {
         "indexView": (context) => const IndexView(),
         "registrationView": (context) => const RegistrationView(),
         "loginView": (context) => const LoginView(),
+        "profileView": (context) => const ProfileView(),
+        "favoriteView": (context) => const FavoriteView(),
+        "createTripView": (context) => const CreateTripView(),
       },
     );
   }

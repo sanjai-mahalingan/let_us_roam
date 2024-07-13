@@ -32,17 +32,6 @@ class _LoginView extends ConsumerState<LoginView> {
         ref.read(userSession.notifier).state = credential.user;
         if (mounted) {
           Navigator.pushNamed(context, 'indexView');
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: const Text('Successfully Logged In'),
-              backgroundColor: Colors.green,
-              behavior: SnackBarBehavior.floating,
-              margin: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height - 100,
-                  right: 20,
-                  left: 20),
-            ),
-          );
         }
         setState(() {
           isLoading = false;
@@ -263,7 +252,7 @@ class _LoginView extends ConsumerState<LoginView> {
                                   children: [
                                     TextFormField(
                                       controller: email,
-                                      autofocus: true,
+                                      autofocus: false,
                                       textInputAction: TextInputAction.next,
                                       keyboardType: TextInputType.emailAddress,
                                       decoration: const InputDecoration(
