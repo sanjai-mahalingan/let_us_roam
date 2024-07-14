@@ -31,7 +31,10 @@ class MainApp extends ConsumerWidget {
 
         // Default Text Theme
         textTheme: const TextTheme(
-          titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          titleLarge: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
           titleMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           displayMedium: TextStyle(
             fontSize: 16,

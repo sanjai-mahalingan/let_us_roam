@@ -45,7 +45,7 @@ class _SideNav extends ConsumerState<SideNav> {
             children: [
               widget.user != null
                   ? Text(
-                      'Hi, ${widget.user!.displayName}',
+                      'Hi, ${widget.user!.email}',
                       style: Theme.of(context)
                           .textTheme
                           .titleLarge!

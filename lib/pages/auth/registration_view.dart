@@ -35,23 +35,21 @@ class _RegistrationView extends ConsumerState<RegistrationView> {
             Navigator.pushNamed(context, 'initialView');
           }
         });
+
         setState(() {
           isLoading = false;
         });
         if (mounted) {
-          Navigator.pushNamed(context, 'indexView');
+          Navigator.pushNamed(context, 'indexView',
+              arguments: {'newUser': true});
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              behavior: SnackBarBehavior.floating,
-              content: const Text('Thank for your registration.'),
+            const SnackBar(
+              content: Text('Thank for your registration.'),
               backgroundColor: Colors.green,
-              margin: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height - 100,
-                  right: 20,
-                  left: 20),
             ),
           );
         }
+        return;
       } on FirebaseAuthException catch (e) {
         if (mounted && e.code == 'invalid-email') {
           ScaffoldMessenger.of(context).showSnackBar(
